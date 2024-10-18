@@ -1,11 +1,11 @@
 const canvas = document.getElementById('canvas1');
 const ctx = canvas.getContext('2d');
+ctx.fillStyle = 'red';
+
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
-
-ctx.fillStyle = 'white';
-
+console.log(ctx);
 
 
 class Particle {
@@ -29,16 +29,25 @@ class Effect {
         this.height = this.canvas.height;
         this.width = this.canvas.width;
         this.particlesArray = [];
-        this.numberofParticles = 20;
+        this.numberOfParticles = 20;
+        this.createParticles();
     }
 
     createParticles() {
-        for (let i = 0; i < this.numberofParticles; i++){
+        for (let i = 0; i < this.numberOfParticles; i++){
             this.particlesArray.push(new Particle(this));
         }    
     }
 
+    handleParticles(context) {
+        this.particlesArray.forEach(particle => {
+            particle.draw(context);
+        })
+    }
 }
+
+const effect = new Effect(canvas);
+effect.handleParticles(ctx);
 
 function animate() {
 
