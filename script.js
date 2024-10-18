@@ -13,5 +13,5 @@ class Effect {
 }
 
 function animate() {
-    
+
 }
